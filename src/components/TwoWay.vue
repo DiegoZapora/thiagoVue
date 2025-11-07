@@ -1,34 +1,47 @@
 <template>
-
+    <Msg :mensagem="msg" :tipo-msg="tipo" />
     <div>
-        <label>Musicas: </label>
-        <select v-model="musicas">
-            <option value="">Escolha</option>
-            <option value="mentalize">A Lapse in Time</option>
-            <option value="timetobefree">Endeavour</option>
-            <option value="theturnofthelights">Stop!</option>
-        </select>
+        <form @submit.prevent="formSubmit">
+            <label for="nome">Nome: </label>
+            <input type="text" name="nome" id="nome" v-model="nome"> <br><br>
+            <label for="idade">Idade: </label>
+            <input type="number" name="idade" id="idade" v-model="idade"> <br><br>
+
+            <button>Enviar</button>
+        </form>
     </div>
-    {{ musicas }}
-
-    <div>
-        <label>NewsSamp</label>
-        <input v-model="samp" type="radio" value="Sim" > Sim
-        <input v-model="samp" type="radio" value="Não" > Não
-    </div>
-
-    {{ samp }}
-
 </template>
 
 <script>
+import Msg from './Msg.vue';
+
+
 export default {
     name: "TwoWay",
     data() {
         return {
-            musicas: "",
-            samp: ""
+            nome: "",
+            idade: "",
+            msg: "",
+            tipo: ""
         }
+    },
+    methods: {
+        async formSubmit() {
+            if (this.nome === "" || this.idade === "") {
+                this.msg = "Erro, formulario vario!"
+                this.tipo = "Error"
+            } else {
+                this.msg = "Formulario enviado com sucesso"
+                this.tipo = "Success"
+
+                this.nome = ""
+                this.idade = ""
+            }
+        }
+    },
+    components: {
+        Msg
     }
 }
 </script>
