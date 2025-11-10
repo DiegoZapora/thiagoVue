@@ -18,16 +18,19 @@ export default {
                 this.tipoMsg ? `alert${this.tipoMsg}` : ""
             ]
         }
-    }
+    },
 }
 </script>
 
 <style scoped>
 .alert {
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
     padding: 5px;
     border-radius: 6px;
-    text-align: center;
     font-weight: bold;
+    margin-bottom: 10px;
 }
 
 .alertError {

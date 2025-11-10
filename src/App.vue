@@ -1,6 +1,11 @@
 <template>
   <div class="mainTudo">
-    <two-way />
+    <nav>
+      <router-link to="/">Home</router-link> <span></span>
+      <router-link to="/computada">Computada</router-link> <span></span>
+      <router-link to="/servicos">Serviços</router-link>
+    </nav>
+    <router-view />
   </div>
 </template>
 

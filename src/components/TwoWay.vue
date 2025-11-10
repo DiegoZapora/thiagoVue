@@ -1,6 +1,6 @@
 <template>
-    <Msg :mensagem="msg" :tipo-msg="tipo" />
-    <div>
+    <div class="formControl">
+        <Msg :mensagem="msg" :tipo-msg="tipo" v-if="Mensagem" />
         <form @submit.prevent="formSubmit">
             <label for="nome">Nome: </label>
             <input type="text" name="nome" id="nome" v-model="nome"> <br><br>
@@ -23,21 +23,32 @@ export default {
             nome: "",
             idade: "",
             msg: "",
-            tipo: ""
+            tipo: "",
+            Mensagem: false
         }
     },
     methods: {
         async formSubmit() {
             if (this.nome === "" || this.idade === "") {
-                this.msg = "Erro, formulario vario!"
+                this.Mensagem = true
+                this.msg = "Erro, formulario vazio!"
                 this.tipo = "Error"
+                this.fecha()
             } else {
+                this.Mensagem = true
                 this.msg = "Formulario enviado com sucesso"
                 this.tipo = "Success"
 
                 this.nome = ""
                 this.idade = ""
+                this.fecha()
             }
+        },
+        fecha() {
+            setTimeout(() => {
+                this.Mensagem = false
+            }, 3000);
+            this.$emit("fecha")
         }
     },
     components: {
@@ -45,3 +56,14 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.formControl {
+    display: 100%;
+    height: 100%;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+</style>
