@@ -1,21 +1,10 @@
 <template>
-    home
+    <h1>{{ userStore.mensagem.nomeUser }}</h1>
+    <h1>{{ userStore.mensagem.email }}</h1>
 </template>
 
-<script>
-import { useUser } from '../store';
-useUser()
-
-export default {
-    data() {
-        return {
-
-        }
-    },
-    methods: {
-
-    },
-    
-}
+<script setup>
+import { useUser } from '../store/userStore';
+const userStore = useUser()
 
 </script>

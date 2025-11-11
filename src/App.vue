@@ -1,24 +1,16 @@
 <template>
   <div class="mainTudo">
-    <nav>
-      <router-link to="/">Home</router-link> <span></span>
-      <router-link to="/computada">Computada</router-link> <span></span>
-      <router-link to="/servicos">Serviços</router-link>
-    </nav>
-    <router-view />
+    <life-cycle texto-btn="Enviar" @update="nomeBtn" />
   </div>
 </template>
 
-<script>
-import TwoWay from './components/TwoWay.vue';
+<script setup>
+import LifeCycle from './components/LifeCycle.vue';
 
-
-
-export default {
-  components: {
-    TwoWay
-  }
+const nomeBtn = () => {
+  alert("fui clicado")
 }
+
 </script>
 
 <style>
